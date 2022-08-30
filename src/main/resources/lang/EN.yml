@@ -1,0 +1,29 @@
+##########################################################################################
+#                                                                                        #
+#                                                                                        #
+#				          Simple Tokens By Teyir > Teyir.fr                              #
+#                                                                                        #
+#                       For support → http://discord.teyir.fr                            #
+#                                                                                        #
+#                                                                                        #
+##########################################################################################
+
+# For the minecraft color codes > https://www.spigotmc.org/attachments/example2-png.188806/
+# This config support all the placeholders from PlaceholderAPI → https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
+# You can check your file with this tool → http://www.yamllint.com
+
+# You can use the placeholder {{prefix}} anywhere you want.
+#
+
+messages:
+  errors:
+    noPermission: "&8[&c&l!&8] &cYou don't have the permission to do that!"
+
+  subCommands:
+    helpHeader: "&8&l&m                     &f&l{&r &bSimple-Tokens &f&l}&8&l&m                    &r\n"
+    helpPrefix: "&8&l/&r&f"
+    helpFooter: "\n&8&l&m                  &f&l{&r &bSimple-Tokens &f&l}&8&l&m                  &r"
+    helpUsage: " &8/&b {{usage}}  &8&l- &r&f {{description}}"
+
+  commands:
+    commandGetUsage: "Ccc"

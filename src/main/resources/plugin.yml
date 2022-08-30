@@ -1,0 +1,24 @@
+name: ${project.artifactId}
+version: ${project.version}
+main: fr.teyir.simpletokens.SimpleTokens
+prefix: Simple-Tokens
+softdepend:
+  - PlaceholderAPI
+author: Teyir
+description: ${project.description}
+website: https://teyir.fr
+api-version: 1.13
+
+commands:
+  tokens:
+    description: Main command
+    aliases:
+      - simpletokens
+      - st
+      - stokens
+
+
+permissions:
+  simpletokens.get:
+    description: Get the player tokens
+    default: false
