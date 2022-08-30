@@ -58,7 +58,15 @@ public class DBRequest {
 
     /* -- DB REQUEST -- */
 
-    protected int getPlayerTokens(String uuid) throws SQLException {
+    public int getPlayerTokens(String uuid) throws SQLException {
+        final PreparedStatement preparedStatement = sql.prepareStatement("SELECT tokens FROM simpletokens_data WHERE uuid = ?");
+
+        preparedStatement.setString(1, uuid);
+
+        final ResultSet rs = preparedStatement.executeQuery();
+
+        if(rs.next())
+            return (rs.getObject(1) != null) ? rs.getInt(1) : 0;
 
         return 0;
     }

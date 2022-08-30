@@ -18,6 +18,7 @@
 messages:
   errors:
     noPermission: "&8[&c&l!&8] &cYou don't have the permission to do that!"
+    invalidPlayer: "&8[&c&l!&8] &cInvalid player"
 
   subCommands:
     helpHeader: "&8&l&m                     &f&l{&r &bSimple-Tokens &f&l}&8&l&m                    &r\n"
@@ -26,4 +27,5 @@ messages:
     helpUsage: " &8/&b {{usage}}  &8&l- &r&f {{description}}"
 
   commands:
-    commandGetUsage: "Ccc"
+    commandGetUsage: "Get the player tokens"
+    commandGetMessage: "{{prefix}}&7The player &l{{player}} &7has &l{{tokens}}&7 tokens"

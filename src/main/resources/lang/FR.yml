@@ -15,10 +15,10 @@
 # Vous pouvez utiliser le placeholder {{prefix}} où vous souhaitez.
 #
 
-
 messages:
   errors:
     noPermission: "&8[&c&l!&8] &cAttention, vous n'avez pas la permission de faire ça!"
+    invalidPlayer: "&8[&c&l!&8] &cJoueur introuvable"
 
   subCommands:
     helpHeader: "&8&l&m                     &f&l{&r &bSimple-Tokens &f&l}&8&l&m                    &r\n"
@@ -27,4 +27,5 @@ messages:
     helpUsage: " &8/&b {{usage}}  &8&l- &r&f {{description}}"
 
   commands:
-    commandGetUsage: "Ccc"
+    commandGetUsage: "Obtenez les tokens d'un joueur"
+    commandGetMessage: "{{prefix}}&7Le joueur &l{{player}} &7possède &l{{tokens}}&7 tokens"
