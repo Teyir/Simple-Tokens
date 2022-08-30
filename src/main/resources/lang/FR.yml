@@ -31,3 +31,7 @@ messages:
     commandGetMessage: "{{prefix}}&7Le joueur &l{{player}} &7possède &l{{tokens}}&7 tokens"
     commandBalanceDescription: "Obtenez vos tokens"
     commandBalanceMessage: "{{prefix}}&7Vous possédez &l{{tokens}}&7 tokens"
+    commandTakeDescription: "Retirez des tokens à un ou plusieurs joueurs"
+    commandTakeMessageSingle: "{{prefix}}&7Vous avez retiré &l{{amount}}&7 tokens à {{player}}"
+    commandTakeMessageMultiplesOnline: "{{prefix}}&7Vous avez retiré &l{{amount}}&7 tokens aux joueurs en ligne"
+    commandTakeMessageMultiplesAll: "{{prefix}}&7Vous avez retiré &l{{amount}}&7 tokens à tous les joueurs"

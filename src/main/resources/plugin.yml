@@ -22,3 +22,9 @@ permissions:
   simpletokens.get:
     description: Get the player tokens
     default: false
+  simpletokens.balance:
+    description: Get your tokens
+    default: false
+  simpletokens.take:
+    description: Remove tokens for a player or everyone
+    default: false

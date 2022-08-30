@@ -49,7 +49,7 @@ public class DBRequest {
 
         final ResultSet rs = preparedStatement.executeQuery();
 
-        if(rs.next()) {
+        if (rs.next()) {
             return rs.getInt("count") != 0;
         }
 
@@ -65,10 +65,27 @@ public class DBRequest {
 
         final ResultSet rs = preparedStatement.executeQuery();
 
-        if(rs.next())
+        if (rs.next())
             return (rs.getObject(1) != null) ? rs.getInt(1) : 0;
 
         return 0;
+    }
+
+    public void removePlayerTokens(String uuid, int amount) throws SQLException {
+        final PreparedStatement preparedStatement = sql.prepareStatement("UPDATE simpletokens_data SET tokens = tokens - ?, last_updated = CURRENT_TIMESTAMP() WHERE uuid = ?");
+
+        preparedStatement.setInt(1, amount);
+        preparedStatement.setString(2, uuid);
+
+        preparedStatement.executeUpdate();
+    }
+
+    public void removeAllPlayersTokens(int amount) throws SQLException {
+        final PreparedStatement preparedStatement = sql.prepareStatement("UPDATE simpletokens_data SET tokens = tokens - ?, last_updated = CURRENT_TIMESTAMP()");
+
+        preparedStatement.setInt(1, amount);
+
+        preparedStatement.executeUpdate();
     }
 }
 
