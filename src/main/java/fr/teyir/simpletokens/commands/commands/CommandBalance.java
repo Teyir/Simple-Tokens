@@ -12,48 +12,48 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CommandGet implements ICommand {
+public class CommandBalance implements ICommand {
 
     private final SimpleTokens plugin;
 
-    public CommandGet(SimpleTokens plugin) {
+    public CommandBalance(SimpleTokens plugin) {
         this.plugin = plugin;
     }
 
     @Override
     public String getLabel() {
-        return "get";
+        return "balance";
     }
 
     @Override
     public String getUsage() {
-        return "tokens get PSEUDO";
+        return "tokens balance";
     }
 
     @Override
     public String getPermission() {
-        return "simpletokens.get";
+        return "simpletokens.balance";
     }
 
     @Override
     public String getDescription() {
-        return plugin.getLang("commands.commandGetDescription");
+        return plugin.getLang("commands.commandBalanceDescription");
     }
 
     @Override
     public int getMinArgs() {
-        return 2;
+        return 1;
     }
 
     @Override
     public int getMaxArgs() {
-        return 2;
+        return 1;
     }
 
     @Override
     public void perform(SimpleTokens plugin, CommandSender sender, String[] args) {
 
-        Player target = Bukkit.getPlayer(args[1]);
+        Player target = (Player) sender;
 
         if (target != null) {
             String uuid = String.valueOf(target.getUniqueId());
@@ -61,10 +61,9 @@ public class CommandGet implements ICommand {
             DBRequest dbRequest = new DBRequest(plugin);
 
             try {
-                 int tokens = dbRequest.getPlayerTokens(uuid);
+                int tokens = dbRequest.getPlayerTokens(uuid);
 
-                sender.sendMessage(plugin.getLang("commands.commandGetMessage")
-                        .replace("{{player}}", target.getDisplayName())
+                sender.sendMessage(plugin.getLang("commands.commandBalanceMessage")
                         .replace("{{tokens}}", String.valueOf(tokens)));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -81,12 +80,6 @@ public class CommandGet implements ICommand {
 
         if (!sender.hasPermission(getPermission())) {
             return new ArrayList<>();
-        }
-
-        if (args.length == 1) {
-            List<String> list = new ArrayList<>();
-            list.add("get");
-            return list;
         }
 
         return null;

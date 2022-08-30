@@ -1,6 +1,7 @@
 package fr.teyir.simpletokens.commands;
 
 import fr.teyir.simpletokens.SimpleTokens;
+import fr.teyir.simpletokens.commands.commands.CommandBalance;
 import fr.teyir.simpletokens.commands.commands.CommandGet;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,6 +22,7 @@ public class CommandsHandler implements CommandExecutor, TabCompleter {
 
         /* Add commands files */
         subCommands.add(new CommandGet(plugin));
+        subCommands.add(new CommandBalance(plugin));
 
     }
     @Override

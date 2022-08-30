@@ -27,5 +27,7 @@ messages:
     helpUsage: " &8/&b {{usage}}  &8&l- &r&f {{description}}"
 
   commands:
-    commandGetUsage: "Get the player tokens"
+    commandGetDescription: "Get the player tokens"
     commandGetMessage: "{{prefix}}&7The player &l{{player}} &7has &l{{tokens}}&7 tokens"
+    commandBalanceDescription: "Get your tokens"
+    commandBalanceMessage: "{{prefix}}&7You have &l{{tokens}}&7 tokens"
