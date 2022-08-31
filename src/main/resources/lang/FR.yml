@@ -20,6 +20,9 @@ messages:
     noPermission: "&8[&c&l!&8] &cAttention, vous n'avez pas la permission de faire ça!"
     invalidPlayer: "&8[&c&l!&8] &cJoueur introuvable"
     noOnlinePlayers: "&8[&c&l!&8] &cAucun joueurs en ligne"
+    onlyPlayers: "Cette commande peut être executée uniquement par des joueurs"
+    insufficientBalance: "&8[&c&l!&8] &cVotre solde est insuffisant"
+    invalidNumber: "&8[&c&l!&8] &cMerci d'entrer un nombre valide"
 
   subCommands:
     helpHeader: "&8&l&m                     &f&l{&r &bSimple-Tokens &f&l}&8&l&m                    &r\n"
@@ -44,3 +47,5 @@ messages:
     commandSetMessageSingle: "{{prefix}}&7Vous avez définis le solde &l{{player}}&7 à &l{{amount}}&7 tokens"
     commandSetMessageMultiplesOnline: "{{prefix}}&7Vous avez définis le solde des joueurs en ligne à &l{{amount}}&7 tokens"
     commandSetMessageMultiplesAll: "{{prefix}}&7Vous avez définis le solde de tous les joueurs à &l{{amount}}&7 tokens"
+    commandPayDescription: "Envoyez des tokens avec le solde de votre compte"
+    commandPayMessage: "{{prefix}}&7Vous avez envoyé &l{{amount}}&7 tokens à &l{{player}}"

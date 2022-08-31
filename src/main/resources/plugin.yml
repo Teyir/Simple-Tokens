@@ -34,4 +34,6 @@ permissions:
   simpletokens.set:
     description: Set tokens for a player or everyone
     default: false
-
+  simpletokens.pay:
+    description: Pay tokens
+    default: false

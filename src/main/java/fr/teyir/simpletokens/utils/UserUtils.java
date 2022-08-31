@@ -43,4 +43,16 @@ public class UserUtils {
             throw new RuntimeException(e);
         }
     }
+
+    public void sendMoney(String uuidSender, String uuidReceiver, int amount) {
+        DBRequest dbRequest = new DBRequest(plugin);
+
+        try {
+            dbRequest.removePlayerTokens(uuidSender, amount);
+            dbRequest.givePlayerTokens(uuidReceiver, amount);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }

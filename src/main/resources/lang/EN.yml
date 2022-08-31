@@ -20,6 +20,8 @@ messages:
     noPermission: "&8[&c&l!&8] &cYou don't have the permission to do that!"
     invalidPlayer: "&8[&c&l!&8] &cInvalid player"
     noOnlinePlayers: "&8[&c&l!&8] &cNo online players"
+    onlyPlayers: "This command can executed only by players"
+    insufficientBalance: "&8[&c&l!&8] &cYour balance is insufficient"
 
   subCommands:
     helpHeader: "&8&l&m                     &f&l{&r &bSimple-Tokens &f&l}&8&l&m                    &r\n"
@@ -44,3 +46,5 @@ messages:
     commandSetMessageSingle: "{{prefix}}&7You have set the balance for &l{{player}}&7 to &l{{amount}}&7 tokens"
     commandSetMessageMultiplesOnline: "{{prefix}}&7You have set the balance for the online players to &l{{amount}}&7 tokens"
     commandSetMessageMultiplesAll: "{{prefix}}&7You have set the balance for all the players to &l{{amount}}&7 tokens"
+    commandPayDescription: "Send your tokens to an other player"
+    commandPayMessage: "{{prefix}}&7You have send &l{{amount}}&7 tokens to &l{{player}}"

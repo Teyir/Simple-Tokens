@@ -26,6 +26,7 @@ public class CommandsHandler implements CommandExecutor, TabCompleter {
         subCommands.add(new CommandTake(plugin));
         subCommands.add(new CommandGive(plugin));
         subCommands.add(new CommandSet(plugin));
+        subCommands.add(new CommandPay(plugin));
 
     }
 
