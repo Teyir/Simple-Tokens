@@ -5,6 +5,7 @@ import fr.teyir.simpletokens.db.DBRequest;
 import fr.teyir.simpletokens.db.DatabaseManager;
 import fr.teyir.simpletokens.listeners.JoinListener;
 import fr.teyir.simpletokens.utils.HookManager;
+import fr.teyir.simpletokens.utils.UpdateChecker;
 import fr.teyir.simpletokens.utils.config.Config;
 import fr.teyir.simpletokens.utils.config.ConfigLang;
 import org.bukkit.Bukkit;
@@ -65,6 +66,17 @@ public final class SimpleTokens extends JavaPlugin {
 
         /* Register events */
         new JoinListener(this);
+
+        /* Update checker */
+
+        UpdateChecker updateChecker = new UpdateChecker(this, 104962);
+
+        updateChecker.getVersion(version -> {
+            if(!this.getDescription().getVersion().equalsIgnoreCase(version)) {
+                getLogger().warning("A new update is available here");
+                getLogger().warning("-> https://www.spigotmc.org/resources/simple-tokens-mysql-points-storage.104962/");
+            }
+        });
 
         getLogger().info("Plugin Simple Tokens by Teyir enabled with success !");
         getLogger().info("For a better support join our Discord -> http://discord.teyir.fr");
