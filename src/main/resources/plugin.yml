@@ -19,6 +19,28 @@ commands:
 
 
 permissions:
+  simpletokens.*:
+    description: Get all the simpletokens permissions
+    default: op
+    children:
+      simpletokens.get: true
+      simpletokens.balance: true
+      simpletokens.take: true
+      simpletokens.give: true
+      simpletokens.set: true
+      simpletokens.pay: true
+      simpletokens.top: true
+      simpletokens.reload: true
+
+  simpletokens.user:
+    description: Get the basic simpletokens permissions for users
+    default: false
+    children:
+      simpletokens.balance: true
+      simpletokens.pay: true
+      simpletokens.top: true
+
+
   simpletokens.get:
     description: Get the player tokens
     default: false
