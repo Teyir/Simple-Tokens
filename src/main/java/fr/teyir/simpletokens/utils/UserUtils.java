@@ -23,4 +23,14 @@ public class UserUtils {
             throw new RuntimeException(e);
         }
     }
+
+    public void giveMoney(String uuid, int amount) {
+        DBRequest dbRequest = new DBRequest(plugin);
+
+        try {
+            dbRequest.givePlayerTokens(uuid, amount);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

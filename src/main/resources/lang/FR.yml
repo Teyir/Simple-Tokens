@@ -19,6 +19,7 @@ messages:
   errors:
     noPermission: "&8[&c&l!&8] &cAttention, vous n'avez pas la permission de faire ça!"
     invalidPlayer: "&8[&c&l!&8] &cJoueur introuvable"
+    noOnlinePlayers: "&8[&c&l!&8] &cAucun joueurs en ligne"
 
   subCommands:
     helpHeader: "&8&l&m                     &f&l{&r &bSimple-Tokens &f&l}&8&l&m                    &r\n"
@@ -35,3 +36,7 @@ messages:
     commandTakeMessageSingle: "{{prefix}}&7Vous avez retiré &l{{amount}}&7 tokens à {{player}}"
     commandTakeMessageMultiplesOnline: "{{prefix}}&7Vous avez retiré &l{{amount}}&7 tokens aux joueurs en ligne"
     commandTakeMessageMultiplesAll: "{{prefix}}&7Vous avez retiré &l{{amount}}&7 tokens à tous les joueurs"
+    commandGiveDescription: "Ajoutez des tokens à un ou plusieurs joueurs"
+    commandGiveMessageSingle: "{{prefix}}&7Vous avez donné &l{{amount}}&7 tokens à {{player}}"
+    commandGiveMessageMultiplesOnline: "{{prefix}}&7Vous avez donné &l{{amount}}&7 tokens aux joueurs en ligne"
+    commandGiveMessageMultiplesAll: "{{prefix}}&7Vous avez donné &l{{amount}}&7 tokens à tous les joueurs"

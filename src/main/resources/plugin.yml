@@ -28,3 +28,6 @@ permissions:
   simpletokens.take:
     description: Remove tokens for a player or everyone
     default: false
+  simpletokens.give:
+    description: Give tokens for a player or everyone
+    default: false

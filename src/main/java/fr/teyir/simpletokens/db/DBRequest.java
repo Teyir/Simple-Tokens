@@ -87,5 +87,22 @@ public class DBRequest {
 
         preparedStatement.executeUpdate();
     }
+
+    public void givePlayerTokens(String uuid, int amount) throws SQLException {
+        final PreparedStatement preparedStatement = sql.prepareStatement("UPDATE simpletokens_data SET tokens = tokens + ?, last_updated = CURRENT_TIMESTAMP() WHERE uuid = ?");
+
+        preparedStatement.setInt(1, amount);
+        preparedStatement.setString(2, uuid);
+
+        preparedStatement.executeUpdate();
+    }
+
+    public void giveAllPlayersTokens(int amount) throws SQLException {
+        final PreparedStatement preparedStatement = sql.prepareStatement("UPDATE simpletokens_data SET tokens = tokens + ?, last_updated = CURRENT_TIMESTAMP()");
+
+        preparedStatement.setInt(1, amount);
+
+        preparedStatement.executeUpdate();
+    }
 }
 

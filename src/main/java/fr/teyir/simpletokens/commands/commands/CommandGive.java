@@ -12,31 +12,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommandTake implements ICommand {
+public class CommandGive implements ICommand {
 
     private final SimpleTokens plugin;
 
-    public CommandTake(SimpleTokens plugin) {
+    public CommandGive(SimpleTokens plugin) {
         this.plugin = plugin;
     }
+
     @Override
     public String getLabel() {
-        return "take";
+        return "give";
     }
 
     @Override
     public String getUsage() {
-        return "tokens take PLAYER AMOUNT";
+        return "tokens give PSEUDO AMOUNT";
     }
 
     @Override
     public String getPermission() {
-        return "simpletokens.take";
+        return "simpletokens.give";
     }
 
     @Override
     public String getDescription() {
-        return plugin.getLang("commands.commandTakeDescription");
+        return plugin.getLang("commands.commandGiveDescription");
     }
 
     @Override
@@ -52,19 +53,17 @@ public class CommandTake implements ICommand {
     @Override
     public void perform(SimpleTokens plugin, CommandSender sender, String[] args) {
 
-
         DBRequest dbRequest = new DBRequest(plugin);
-
 
         int amount = Integer.parseInt(args[2]);
 
         if (args[1] != null) {
 
             /* Query all players (*) */
-            if(args[1].equalsIgnoreCase("*")){
+            if (args[1].equalsIgnoreCase("*")) {
                 try {
-                    dbRequest.removeAllPlayersTokens(amount);
-                    sender.sendMessage(plugin.getLang("commands.commandTakeMessageMultiplesAll")
+                    dbRequest.giveAllPlayersTokens(amount);
+                    sender.sendMessage(plugin.getLang("commands.commandGiveMessageMultiplesAll")
                             .replace("{{amount}}", args[2]));
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
@@ -79,9 +78,9 @@ public class CommandTake implements ICommand {
                     return;
                 }
 
-                for(Player p : onlinePlayers) {
-                    new UserUtils(plugin).removeMoney(String.valueOf(p.getUniqueId()), amount);
-                    sender.sendMessage(plugin.getLang("commands.commandTakeMessageMultiplesOnline")
+                for (Player p : onlinePlayers) {
+                    new UserUtils(plugin).giveMoney(String.valueOf(p.getUniqueId()), amount);
+                    sender.sendMessage(plugin.getLang("commands.commandGiveMessageMultiplesOnline")
                             .replace("{{amount}}", args[2]));
                 }
 
@@ -89,12 +88,12 @@ public class CommandTake implements ICommand {
             } else {
                 Player target = Bukkit.getPlayer(args[1]);
 
-                if(target != null) {
+                if (target != null) {
                     String targetUUID = String.valueOf(target.getUniqueId());
 
-                    new UserUtils(plugin).removeMoney(targetUUID, amount);
+                    new UserUtils(plugin).giveMoney(targetUUID, amount);
 
-                    sender.sendMessage(plugin.getLang("commands.commandTakeMessageSingle")
+                    sender.sendMessage(plugin.getLang("commands.commandGiveMessageSingle")
                             .replace("{{amount}}", args[2])
                             .replace("{{player}}", target.getDisplayName())
                     );
@@ -102,15 +101,7 @@ public class CommandTake implements ICommand {
 
             }
 
-
-
-
-
-
-
-
         }
-
     }
 
     @Override
@@ -122,7 +113,7 @@ public class CommandTake implements ICommand {
 
         if (args.length == 1) {
             List<String> list = new ArrayList<>();
-            list.add("take");
+            list.add("give");
             return list;
         }
 
@@ -133,7 +124,7 @@ public class CommandTake implements ICommand {
 
             Player[] onlinePlayers = Bukkit.getOnlinePlayers().toArray(new Player[0]);
 
-            for(Player p : onlinePlayers) {
+            for (Player p : onlinePlayers) {
                 list.add(p.getName());
             }
 

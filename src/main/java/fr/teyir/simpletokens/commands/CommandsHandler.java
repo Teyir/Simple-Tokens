@@ -3,9 +3,11 @@ package fr.teyir.simpletokens.commands;
 import fr.teyir.simpletokens.SimpleTokens;
 import fr.teyir.simpletokens.commands.commands.CommandBalance;
 import fr.teyir.simpletokens.commands.commands.CommandGet;
+import fr.teyir.simpletokens.commands.commands.CommandGive;
 import fr.teyir.simpletokens.commands.commands.CommandTake;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,19 +27,20 @@ public class CommandsHandler implements CommandExecutor, TabCompleter {
         subCommands.add(new CommandGet(plugin));
         subCommands.add(new CommandBalance(plugin));
         subCommands.add(new CommandTake(plugin));
+        subCommands.add(new CommandGive(plugin));
 
     }
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, org.bukkit.command.@NotNull Command command, @NotNull String label, String[] args) {
-        if(args.length > 0){
-            for(ICommand subCommand : subCommands) {
-                if (subCommand.getLabel().equalsIgnoreCase(args[0])){
-                    if(subCommand.getPermission() != null && !sender.hasPermission(subCommand.getPermission())){
-
+        if (args.length > 0) {
+            for (ICommand subCommand : subCommands) {
+                if (subCommand.getLabel().equalsIgnoreCase(args[0])) {
+                    if (subCommand.getPermission() != null && !sender.hasPermission(subCommand.getPermission()) && !sender.isOp() && !(sender instanceof ConsoleCommandSender)) {
                         sender.sendMessage(plugin.getLang("errors.noPermission"));
                         return false;
                     }
-                    if(args.length < subCommand.getMinArgs() || args.length > subCommand.getMaxArgs()){
+                    if (args.length < subCommand.getMinArgs() || args.length > subCommand.getMaxArgs()) {
                         sender.sendMessage(plugin.getLang("subCommands.helpHeader"));
                         sender.sendMessage(plugin.getLang("subCommands.helpPrefix") + subCommand.getUsage());
                         sender.sendMessage(plugin.getLang("subCommands.helpFooter"));
@@ -55,11 +58,11 @@ public class CommandsHandler implements CommandExecutor, TabCompleter {
         }
 
         //Checking that the player has permission to use at least one of the commands.
-        for(ICommand subCommand : subCommands){
-            if(sender.hasPermission(subCommand.getPermission())){
+        for (ICommand subCommand : subCommands) {
+            if (sender.isOp() || sender instanceof ConsoleCommandSender || sender.hasPermission(subCommand.getPermission())) {
                 sender.sendMessage(plugin.getLang("subCommands.helpHeader"));
 
-                for(ICommand cmd : subCommands)
+                for (ICommand cmd : subCommands)
                     sender.sendMessage(plugin.getLang("subCommands.helpUsage")
                             .replace("{{usage}}", cmd.getUsage())
                             .replace("{{description}}", cmd.getDescription()));
@@ -78,10 +81,10 @@ public class CommandsHandler implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, org.bukkit.command.@NotNull Command cmd, @NotNull String label, String[] args) {
-        if(args.length > 0){
-            for(ICommand subCommand : subCommands) {
-                if (subCommand.getLabel().equalsIgnoreCase(args[0])){
-                    if(subCommand.getPermission() != null && !sender.hasPermission(subCommand.getPermission())){
+        if (args.length > 0) {
+            for (ICommand subCommand : subCommands) {
+                if (subCommand.getLabel().equalsIgnoreCase(args[0])) {
+                    if (subCommand.getPermission() != null && !sender.hasPermission(subCommand.getPermission())) {
                         return new ArrayList<>();
                     }
                     return subCommand.tabComplete(plugin, sender, args);
@@ -91,9 +94,9 @@ public class CommandsHandler implements CommandExecutor, TabCompleter {
 
         List<String> list = new ArrayList<>();
 
-        for(ICommand subCommand : subCommands)
-            if(subCommand.getPermission() == null || sender.hasPermission(subCommand.getPermission()))
-                if(subCommand.getLabel().startsWith(args[0]))
+        for (ICommand subCommand : subCommands)
+            if (subCommand.getPermission() == null || sender.hasPermission(subCommand.getPermission()))
+                if (subCommand.getLabel().startsWith(args[0]))
                     list.add(subCommand.getLabel());
 
         return list;
