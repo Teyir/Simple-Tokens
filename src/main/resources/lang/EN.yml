@@ -52,3 +52,5 @@ messages:
     commandTopDescription: "Get the tokens rankig"
     commandTopLine: "&8#&l{{rank}} &b{{pseudo}}&3 {{amount}} &8tokens"
     commandTopFirst: "&7Be the first to be on the ranking"
+    commandReloadDescription: "Reload the plugin"
+    commandReloadMessage: "&aPlugin reload with succes. It's important to completely restart the server for update all the data"

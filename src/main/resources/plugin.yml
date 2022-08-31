@@ -40,3 +40,6 @@ permissions:
   simpletokens.top:
     description: Display top balance
     default: false
+  simpletokens.reload:
+    description: Reload the plugin
+    default: false

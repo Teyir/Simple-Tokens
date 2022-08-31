@@ -97,6 +97,9 @@ public final class SimpleTokens extends JavaPlugin {
     public Config getConfiguration() {
         return configuration;
     }
+    public ConfigLang getLangConfiguration() {
+        return configLang;
+    }
 
     public String getLang(@NotNull String message){
         return configLang.get(message);

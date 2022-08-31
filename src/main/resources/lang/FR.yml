@@ -52,3 +52,5 @@ messages:
     commandTopDescription: "Affichez le classement des joueurs ayant le plus de tokens"
     commandTopLine: "&8#&l{{rank}} &b{{pseudo}}&3 {{amount}} &8tokens"
     commandTopFirst: "&7Soyez le premier à apparaitre dans le classement"
+    commandReloadDescription: "Reload le plugin"
+    commandReloadMessage: "&aPlugin rechargé avec succès. Il est important de redémarrer complètement le serveur pour mettre à jour certaines données"
