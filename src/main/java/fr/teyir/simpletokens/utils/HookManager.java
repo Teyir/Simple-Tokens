@@ -1,6 +1,7 @@
 package fr.teyir.simpletokens.utils;
 
 import fr.teyir.simpletokens.SimpleTokens;
+import fr.teyir.simpletokens.utils.hooks.Metrics;
 
 public class HookManager {
 
@@ -9,6 +10,7 @@ public class HookManager {
     public HookManager(SimpleTokens plugin) {
         this.plugin = plugin;
 
+        bStats();
         registerExpansions();
     }
 
@@ -16,6 +18,11 @@ public class HookManager {
     {
         //REGISTER PAPI
         new HookPAPI(plugin);
+    }
+
+    private void bStats() {
+        int pluginId = 16321;
+        Metrics metrics = new Metrics(plugin, pluginId);
     }
 
 }
