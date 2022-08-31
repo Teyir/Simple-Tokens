@@ -24,6 +24,7 @@ public class Config {
     private String tokenName;
     private String prefix;
     private int topMaxDisplay;
+    private boolean displayFramedOnQuery;
 
     /* TRANSACTION LOGS */
     private boolean isConsole;
@@ -55,7 +56,8 @@ public class Config {
         startBalance = conf.getInt("general.startBalance", 0);
         tokenName = conf.getString("general.tokenName", "Tokens");
         prefix = conf.getString("general.prefix", "Tokens > ");
-        topMaxDisplay = conf.getInt("general.topMaxDisplay");
+        topMaxDisplay = conf.getInt("general.topMaxDisplay", 10);
+        displayFramedOnQuery = conf.getBoolean("general.displayFramedOnCommandQuery", false);
     }
 
     private void initTransactionConfig(YamlConfiguration conf) {
@@ -108,6 +110,10 @@ public class Config {
 
     public int getTopMaxDisplay() {
         return topMaxDisplay;
+    }
+
+    public boolean isDisplayFramedOnQuery() {
+        return displayFramedOnQuery;
     }
 
     public boolean isConsole() {

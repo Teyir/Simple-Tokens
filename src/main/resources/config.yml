@@ -29,6 +29,7 @@ general:
   tokenName: 'Tokens'
   prefix: '&bTokens &8» &7'
   topMaxDisplay: 10
+  displayFramedOnCommandQuery: true #Display the header and footer when the command is executed ?
 
 transactionLogs:
   console: true

@@ -47,11 +47,11 @@ public class CommandsHandler implements CommandExecutor, TabCompleter {
                         return false;
                     }
                     //Header
-                    sender.sendMessage(plugin.getLang("subCommands.helpHeader"));
+                    if (plugin.getConfiguration().isDisplayFramedOnQuery()) sender.sendMessage(plugin.getLang("subCommands.helpHeader"));
                     //Command
                     subCommand.perform(plugin, sender, args);
                     //Footer
-                    sender.sendMessage(plugin.getLang("subCommands.helpFooter"));
+                    if (plugin.getConfiguration().isDisplayFramedOnQuery()) sender.sendMessage(plugin.getLang("subCommands.helpFooter"));
                     return true;
                 }
             }
