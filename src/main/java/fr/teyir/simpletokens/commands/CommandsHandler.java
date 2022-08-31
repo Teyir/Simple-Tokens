@@ -62,20 +62,21 @@ public class CommandsHandler implements CommandExecutor, TabCompleter {
 
         //Checking that the player has permission to use at least one of the commands.
         for (ICommand subCommand : subCommands) {
-            if (sender.isOp() || sender instanceof ConsoleCommandSender || sender.hasPermission(subCommand.getPermission())) {
-                sender.sendMessage(plugin.getLang("subCommands.helpHeader"));
 
-                for (ICommand cmd : subCommands)
+            sender.sendMessage(plugin.getLang("subCommands.helpHeader"));
+
+            for (ICommand cmd : subCommands)
+                if (sender.isOp() || sender instanceof ConsoleCommandSender || sender.hasPermission(cmd.getPermission())) {
                     sender.sendMessage(plugin.getLang("subCommands.helpUsage")
                             .replace("{{usage}}", cmd.getUsage())
                             .replace("{{description}}", cmd.getDescription()));
+                }
 
-                sender.sendMessage(plugin.getLang("subCommands.helpFooter"));
+            sender.sendMessage(plugin.getLang("subCommands.helpFooter"));
 
-                return false;
-            }
+            return false;
+
         }
-
 
         sender.sendMessage(plugin.getLang("errors.noPermission"));
 
