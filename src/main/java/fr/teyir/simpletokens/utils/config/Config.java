@@ -26,9 +26,7 @@ public class Config {
     private int topMaxDisplay;
     private boolean displayFramedOnQuery;
 
-    /* TRANSACTION LOGS */
-    private boolean isConsole;
-    private boolean isFile;
+    private boolean istransactionLogs;
 
     public Config(SimpleTokens plugin) {
         this.plugin = plugin;
@@ -43,7 +41,6 @@ public class Config {
         final YamlConfiguration conf = YamlConfiguration.loadConfiguration(configFile);
         this.initDatabaseConfig(conf);
         this.initGeneralConfig(conf);
-        this.initTransactionConfig(conf);
     }
 
     public void save() throws IOException {
@@ -58,11 +55,7 @@ public class Config {
         prefix = conf.getString("general.prefix", "Tokens > ");
         topMaxDisplay = conf.getInt("general.topMaxDisplay", 10);
         displayFramedOnQuery = conf.getBoolean("general.displayFramedOnCommandQuery", false);
-    }
-
-    private void initTransactionConfig(YamlConfiguration conf) {
-        isConsole = conf.getBoolean("transactionLogs.console");
-        isFile = conf.getBoolean("transactionLogs.file");
+        istransactionLogs = conf.getBoolean("general.transactionLogs", true);
     }
 
     private void initDatabaseConfig(YamlConfiguration conf) {
@@ -116,11 +109,7 @@ public class Config {
         return displayFramedOnQuery;
     }
 
-    public boolean isConsole() {
-        return isConsole;
-    }
-
-    public boolean isFile() {
-        return isFile;
+    public boolean isTransactionLogs() {
+        return istransactionLogs;
     }
 }

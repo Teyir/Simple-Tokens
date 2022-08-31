@@ -3,6 +3,7 @@ package fr.teyir.simpletokens.commands.commands;
 import fr.teyir.simpletokens.SimpleTokens;
 import fr.teyir.simpletokens.commands.ICommand;
 import fr.teyir.simpletokens.db.DBRequest;
+import fr.teyir.simpletokens.utils.LogsManager;
 import fr.teyir.simpletokens.utils.UserUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -71,6 +72,9 @@ public class CommandGive implements ICommand {
                         dbRequest.giveAllPlayersTokens(amount);
                         sender.sendMessage(plugin.getLang("commands.commandGiveMessageMultiplesAll")
                                 .replace("{{amount}}", args[2]));
+                        LogsManager logs = new LogsManager(plugin);
+                        String content = sender.getName() + " has given " + args[2] + " " + plugin.getConfiguration().getTokenName() + " to (everyone)";
+                        logs.sendLog(content);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
@@ -86,9 +90,14 @@ public class CommandGive implements ICommand {
 
                     for (Player p : onlinePlayers) {
                         new UserUtils(plugin).giveMoney(String.valueOf(p.getUniqueId()), amount);
-                        sender.sendMessage(plugin.getLang("commands.commandGiveMessageMultiplesOnline")
-                                .replace("{{amount}}", args[2]));
+
+                        LogsManager logs = new LogsManager(plugin);
+                        String content = sender.getName() + " has given " + args[2] + " " + plugin.getConfiguration().getTokenName() + " to " + p.getDisplayName() + " (onlinePlayers)";
+                        logs.sendLog(content);
                     }
+
+                    sender.sendMessage(plugin.getLang("commands.commandGiveMessageMultiplesOnline")
+                            .replace("{{amount}}", args[2]));
 
                     /* Query the specific player */
                 } else {
@@ -103,6 +112,9 @@ public class CommandGive implements ICommand {
                                 .replace("{{amount}}", args[2])
                                 .replace("{{player}}", target.getDisplayName())
                         );
+                        LogsManager logs = new LogsManager(plugin);
+                        String content = sender.getName() + " has given " + args[2] + " " + plugin.getConfiguration().getTokenName() + " to " + target.getDisplayName();
+                        logs.sendLog(content);
                     } else {
                         sender.sendMessage(plugin.getLang("errors.invalidPlayer"));
                     }

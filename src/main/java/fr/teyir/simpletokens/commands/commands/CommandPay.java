@@ -3,6 +3,7 @@ package fr.teyir.simpletokens.commands.commands;
 import fr.teyir.simpletokens.SimpleTokens;
 import fr.teyir.simpletokens.commands.ICommand;
 import fr.teyir.simpletokens.db.DBRequest;
+import fr.teyir.simpletokens.utils.LogsManager;
 import fr.teyir.simpletokens.utils.UserUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -78,6 +79,9 @@ public class CommandPay implements ICommand {
                                     .replace("{{amount}}", args[2])
                                     .replace("{{player}}", target.getDisplayName())
                             );
+                            LogsManager logs = new LogsManager(plugin);
+                            String content = sender.getName() + " has pay " + args[2] + " " + plugin.getConfiguration().getTokenName() + " to " + target.getDisplayName();
+                            logs.sendLog(content);
                         } else {
                             sender.sendMessage(plugin.getLang("errors.insufficientBalance"));
                         }
