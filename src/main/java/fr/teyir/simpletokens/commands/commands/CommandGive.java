@@ -55,52 +55,63 @@ public class CommandGive implements ICommand {
 
         DBRequest dbRequest = new DBRequest(plugin);
 
-        int amount = Integer.parseInt(args[2]);
+        try {
+            int amount = Integer.parseInt(args[2]);
 
-        if (args[1] != null) {
+            if (amount <= 0) {
+                sender.sendMessage(plugin.getLang("errors.invalidNumber"));
+                return;
+            }
 
-            /* Query all players (*) */
-            if (args[1].equalsIgnoreCase("*")) {
-                try {
-                    dbRequest.giveAllPlayersTokens(amount);
-                    sender.sendMessage(plugin.getLang("commands.commandGiveMessageMultiplesAll")
-                            .replace("{{amount}}", args[2]));
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+            if (args[1] != null) {
 
-                /* Query online players (%) */
-            } else if (args[1].equalsIgnoreCase("%")) {
-                Player[] onlinePlayers = Bukkit.getOnlinePlayers().toArray(new Player[0]);
+                /* Query all players (*) */
+                if (args[1].equalsIgnoreCase("*")) {
+                    try {
+                        dbRequest.giveAllPlayersTokens(amount);
+                        sender.sendMessage(plugin.getLang("commands.commandGiveMessageMultiplesAll")
+                                .replace("{{amount}}", args[2]));
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
 
-                if(onlinePlayers.length == 0){
-                    sender.sendMessage(plugin.getLang("errors.noOnlinePlayers"));
-                    return;
-                }
+                    /* Query online players (%) */
+                } else if (args[1].equalsIgnoreCase("%")) {
+                    Player[] onlinePlayers = Bukkit.getOnlinePlayers().toArray(new Player[0]);
 
-                for (Player p : onlinePlayers) {
-                    new UserUtils(plugin).giveMoney(String.valueOf(p.getUniqueId()), amount);
-                    sender.sendMessage(plugin.getLang("commands.commandGiveMessageMultiplesOnline")
-                            .replace("{{amount}}", args[2]));
-                }
+                    if (onlinePlayers.length == 0) {
+                        sender.sendMessage(plugin.getLang("errors.noOnlinePlayers"));
+                        return;
+                    }
 
-                /* Query the specific player */
-            } else {
-                Player target = Bukkit.getPlayer(args[1]);
+                    for (Player p : onlinePlayers) {
+                        new UserUtils(plugin).giveMoney(String.valueOf(p.getUniqueId()), amount);
+                        sender.sendMessage(plugin.getLang("commands.commandGiveMessageMultiplesOnline")
+                                .replace("{{amount}}", args[2]));
+                    }
 
-                if (target != null) {
-                    String targetUUID = String.valueOf(target.getUniqueId());
+                    /* Query the specific player */
+                } else {
+                    Player target = Bukkit.getPlayer(args[1]);
 
-                    new UserUtils(plugin).giveMoney(targetUUID, amount);
+                    if (target != null) {
+                        String targetUUID = String.valueOf(target.getUniqueId());
 
-                    sender.sendMessage(plugin.getLang("commands.commandGiveMessageSingle")
-                            .replace("{{amount}}", args[2])
-                            .replace("{{player}}", target.getDisplayName())
-                    );
+                        new UserUtils(plugin).giveMoney(targetUUID, amount);
+
+                        sender.sendMessage(plugin.getLang("commands.commandGiveMessageSingle")
+                                .replace("{{amount}}", args[2])
+                                .replace("{{player}}", target.getDisplayName())
+                        );
+                    } else {
+                        sender.sendMessage(plugin.getLang("errors.invalidPlayer"));
+                    }
+
                 }
 
             }
-
+        } catch (NumberFormatException e) {
+            sender.sendMessage(plugin.getLang("errors.invalidNumber"));
         }
     }
 

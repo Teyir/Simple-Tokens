@@ -19,6 +19,7 @@ public class CommandTake implements ICommand {
     public CommandTake(SimpleTokens plugin) {
         this.plugin = plugin;
     }
+
     @Override
     public String getLabel() {
         return "take";
@@ -54,55 +55,63 @@ public class CommandTake implements ICommand {
 
         DBRequest dbRequest = new DBRequest(plugin);
 
+        try {
+            int amount = Integer.parseInt(args[2]);
 
-        int amount = Integer.parseInt(args[2]);
+            if (amount <= 0) {
+                sender.sendMessage(plugin.getLang("errors.invalidNumber"));
+                return;
+            }
+            if (args[1] != null) {
 
-        if (args[1] != null) {
+                /* Query all players (*) */
+                if (args[1].equalsIgnoreCase("*")) {
+                    try {
+                        dbRequest.removeAllPlayersTokens(amount);
+                        sender.sendMessage(plugin.getLang("commands.commandTakeMessageMultiplesAll")
+                                .replace("{{amount}}", args[2]));
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
 
-            /* Query all players (*) */
-            if(args[1].equalsIgnoreCase("*")){
-                try {
-                    dbRequest.removeAllPlayersTokens(amount);
-                    sender.sendMessage(plugin.getLang("commands.commandTakeMessageMultiplesAll")
-                            .replace("{{amount}}", args[2]));
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+                    /* Query online players (%) */
+                } else if (args[1].equalsIgnoreCase("%")) {
+                    Player[] onlinePlayers = Bukkit.getOnlinePlayers().toArray(new Player[0]);
 
-                /* Query online players (%) */
-            } else if (args[1].equalsIgnoreCase("%")) {
-                Player[] onlinePlayers = Bukkit.getOnlinePlayers().toArray(new Player[0]);
+                    if (onlinePlayers.length == 0) {
+                        sender.sendMessage(plugin.getLang("errors.noOnlinePlayers"));
+                        return;
+                    }
 
-                if(onlinePlayers.length == 0){
-                    sender.sendMessage(plugin.getLang("errors.noOnlinePlayers"));
-                    return;
-                }
+                    for (Player p : onlinePlayers) {
+                        new UserUtils(plugin).removeMoney(String.valueOf(p.getUniqueId()), amount);
+                        sender.sendMessage(plugin.getLang("commands.commandTakeMessageMultiplesOnline")
+                                .replace("{{amount}}", args[2]));
+                    }
 
-                for(Player p : onlinePlayers) {
-                    new UserUtils(plugin).removeMoney(String.valueOf(p.getUniqueId()), amount);
-                    sender.sendMessage(plugin.getLang("commands.commandTakeMessageMultiplesOnline")
-                            .replace("{{amount}}", args[2]));
-                }
+                    /* Query the specific player */
+                } else {
+                    Player target = Bukkit.getPlayer(args[1]);
 
-                /* Query the specific player */
-            } else {
-                Player target = Bukkit.getPlayer(args[1]);
+                    if (target != null) {
+                        String targetUUID = String.valueOf(target.getUniqueId());
 
-                if(target != null) {
-                    String targetUUID = String.valueOf(target.getUniqueId());
+                        new UserUtils(plugin).removeMoney(targetUUID, amount);
 
-                    new UserUtils(plugin).removeMoney(targetUUID, amount);
+                        sender.sendMessage(plugin.getLang("commands.commandTakeMessageSingle")
+                                .replace("{{amount}}", args[2])
+                                .replace("{{player}}", target.getDisplayName())
+                        );
+                    } else {
+                        sender.sendMessage(plugin.getLang("errors.invalidPlayer"));
+                    }
 
-                    sender.sendMessage(plugin.getLang("commands.commandTakeMessageSingle")
-                            .replace("{{amount}}", args[2])
-                            .replace("{{player}}", target.getDisplayName())
-                    );
                 }
 
             }
-
+        } catch (NumberFormatException e) {
+            sender.sendMessage(plugin.getLang("errors.invalidNumber"));
         }
-
     }
 
     @Override
@@ -125,7 +134,7 @@ public class CommandTake implements ICommand {
 
             Player[] onlinePlayers = Bukkit.getOnlinePlayers().toArray(new Player[0]);
 
-            for(Player p : onlinePlayers) {
+            for (Player p : onlinePlayers) {
                 list.add(p.getName());
             }
 

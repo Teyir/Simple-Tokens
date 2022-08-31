@@ -9,11 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.sql.SQLException;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class CommandPay implements ICommand {
 
@@ -55,12 +52,10 @@ public class CommandPay implements ICommand {
 
     @Override
     public void perform(SimpleTokens plugin, CommandSender sender, String[] args) {
-        if (sender instanceof Player) {
+        if (sender instanceof Player senderPlayer) {
 
             DBRequest dbRequest = new DBRequest(plugin);
             Player target = Bukkit.getPlayer(args[1]);
-            Player senderPlayer = (Player) sender;
-
 
             try {
                 int amount = Integer.parseInt(args[2]);
