@@ -12,9 +12,7 @@ public class DatabaseManager {
     private final String pass;
     private final String uri;
     private Connection connection;
-
-    private SimpleTokens plugin;
-
+    
     public DatabaseManager(String user, String pass, String uri) {
         this.user = user;
         this.pass = pass;

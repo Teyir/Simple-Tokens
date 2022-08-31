@@ -13,11 +13,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.logging.Level;
 
 public final class SimpleTokens extends JavaPlugin {
 
-    private static SimpleTokens plugin;
     private static Config configuration;
     private static ConfigLang configLang;
     private DatabaseManager connection;
@@ -30,7 +30,7 @@ public final class SimpleTokens extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        plugin = this;
+        SimpleTokens plugin = this;
 
         /* HOOK MANAGER */
         try {
@@ -60,8 +60,8 @@ public final class SimpleTokens extends JavaPlugin {
 
         /* Commands register */
         CommandsHandler commandsHandler = new CommandsHandler(this);
-        getCommand("tokens").setExecutor(commandsHandler);
-        getCommand("tokens").setTabCompleter(commandsHandler);
+        Objects.requireNonNull(getCommand("tokens")).setExecutor(commandsHandler);
+        Objects.requireNonNull(getCommand("tokens")).setTabCompleter(commandsHandler);
 
         /* Register events */
         new JoinListener(this);

@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CommandSet implements ICommand {
 
-    private SimpleTokens plugin;
+    final private SimpleTokens plugin;
 
     public CommandSet(SimpleTokens plugin) {
         this.plugin = plugin;

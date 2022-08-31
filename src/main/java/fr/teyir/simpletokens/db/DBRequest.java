@@ -1,7 +1,6 @@
 package fr.teyir.simpletokens.db;
 
 import fr.teyir.simpletokens.SimpleTokens;
-import org.bukkit.Bukkit;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +10,7 @@ import java.sql.SQLException;
 public class DBRequest {
 
     final private SimpleTokens plugin;
-    private Connection sql;
+    final private Connection sql;
 
     public DBRequest(SimpleTokens plugin) {
         this.plugin = plugin;
@@ -21,13 +20,15 @@ public class DBRequest {
     public void initDB() throws SQLException {
 
         final PreparedStatement preparedStatement = this.sql.prepareStatement(
-                "CREATE TABLE IF NOT EXISTS `simpletokens_data` (\n" +
-                        "  `id` INT(11) NOT NULL AUTO_INCREMENT,\n" +
-                        "  `uuid` VARCHAR(40) NOT NULL UNIQUE,\n" +
-                        "  `tokens` BIGINT NOT NULL,\n" +
-                        "  `last_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,\n" +
-                        "  PRIMARY KEY (`id`)\n" +
-                        ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n;"
+                """
+                        CREATE TABLE IF NOT EXISTS `simpletokens_data` (
+                          `id` INT(11) NOT NULL AUTO_INCREMENT,
+                          `uuid` VARCHAR(40) NOT NULL UNIQUE,
+                          `tokens` BIGINT NOT NULL,
+                          `last_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+                          PRIMARY KEY (`id`)
+                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                        ;"""
         );
 
         preparedStatement.executeUpdate();

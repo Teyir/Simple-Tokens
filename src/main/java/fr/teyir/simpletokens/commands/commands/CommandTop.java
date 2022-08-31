@@ -16,7 +16,7 @@ import java.util.UUID;
 
 public class CommandTop implements ICommand {
 
-    private SimpleTokens plugin;
+    final private SimpleTokens plugin;
 
     public CommandTop(SimpleTokens plugin) {
         this.plugin = plugin;

@@ -8,11 +8,10 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.SQLException;
-import java.util.UUID;
 
 public class PlaceholderAPIExpansions extends PlaceholderExpansion {
 
-    private SimpleTokens plugin;
+    final private SimpleTokens plugin;
 
     public PlaceholderAPIExpansions(SimpleTokens plugin) {
         this.plugin = plugin;

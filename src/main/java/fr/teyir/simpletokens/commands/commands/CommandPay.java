@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CommandPay implements ICommand {
 
-    private SimpleTokens plugin;
+    final private SimpleTokens plugin;
 
     public CommandPay(SimpleTokens plugin) {
         this.plugin = plugin;

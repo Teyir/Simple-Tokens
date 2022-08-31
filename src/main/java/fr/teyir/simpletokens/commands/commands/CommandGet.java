@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class CommandGet implements ICommand {
 
@@ -61,7 +60,7 @@ public class CommandGet implements ICommand {
             DBRequest dbRequest = new DBRequest(plugin);
 
             try {
-                 int tokens = dbRequest.getPlayerTokens(uuid);
+                int tokens = dbRequest.getPlayerTokens(uuid);
 
                 sender.sendMessage(plugin.getLang("commands.commandGetMessage")
                         .replace("{{player}}", target.getDisplayName())

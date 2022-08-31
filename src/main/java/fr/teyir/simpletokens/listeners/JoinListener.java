@@ -2,8 +2,6 @@ package fr.teyir.simpletokens.listeners;
 
 import fr.teyir.simpletokens.SimpleTokens;
 import fr.teyir.simpletokens.db.DBRequest;
-import fr.teyir.simpletokens.db.DatabaseManager;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

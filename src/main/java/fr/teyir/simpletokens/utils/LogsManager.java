@@ -13,18 +13,16 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class LogsManager {
-    final private SimpleTokens plugin;
-
-    private File logFile;
 
     private String logFileName;
 
     private String path;
 
     public LogsManager(SimpleTokens plugin) {
-        this.plugin = plugin;
-        path = plugin.getDataFolder() + File.separator + "logs" + File.separator;
-        createLogFile();
+        if(plugin.getConfiguration().isTransactionLogs()) {
+            path = plugin.getDataFolder() + File.separator + "logs" + File.separator;
+            createLogFile();
+        }
     }
 
     public void sendLog(String content) {
@@ -54,7 +52,7 @@ public class LogsManager {
             throw new RuntimeException(e);
         }
 
-        logFile = new File(path + logFileName);
+        File logFile = new File(path + logFileName);
 
         if (!logFile.exists())
             new File(path + logFileName);

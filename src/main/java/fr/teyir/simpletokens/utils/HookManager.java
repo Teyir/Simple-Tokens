@@ -1,9 +1,6 @@
 package fr.teyir.simpletokens.utils;
 
 import fr.teyir.simpletokens.SimpleTokens;
-import org.bukkit.Bukkit;
-
-import java.util.ArrayList;
 
 public class HookManager {
 

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class UserUtils {
 
-    private SimpleTokens plugin;
+    final private SimpleTokens plugin;
 
     public UserUtils(SimpleTokens plugin) {
         this.plugin = plugin;

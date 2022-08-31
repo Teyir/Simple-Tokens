@@ -3,14 +3,12 @@ package fr.teyir.simpletokens.commands.commands;
 import fr.teyir.simpletokens.SimpleTokens;
 import fr.teyir.simpletokens.commands.ICommand;
 import fr.teyir.simpletokens.db.DBRequest;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class CommandBalance implements ICommand {
 
@@ -53,9 +51,8 @@ public class CommandBalance implements ICommand {
     @Override
     public void perform(SimpleTokens plugin, CommandSender sender, String[] args) {
 
-        Player target = (Player) sender;
+        if (sender instanceof Player target) {
 
-        if (target != null) {
             String uuid = String.valueOf(target.getUniqueId());
 
             DBRequest dbRequest = new DBRequest(plugin);

@@ -8,7 +8,6 @@ import java.io.IOException;
 
 public class Config {
 
-    final private SimpleTokens plugin;
     final private File configFile;
 
     /* DATABASE */
@@ -29,7 +28,6 @@ public class Config {
     private boolean istransactionLogs;
 
     public Config(SimpleTokens plugin) {
-        this.plugin = plugin;
         configFile = new File(plugin.getDataFolder() + File.separator + "config.yml");
 
         if (!configFile.exists()) plugin.saveResource("config.yml", false);
