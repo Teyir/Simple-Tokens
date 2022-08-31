@@ -49,3 +49,6 @@ messages:
     commandSetMessageMultiplesAll: "{{prefix}}&7Vous avez définis le solde de tous les joueurs à &l{{amount}}&7 tokens"
     commandPayDescription: "Envoyez des tokens avec le solde de votre compte"
     commandPayMessage: "{{prefix}}&7Vous avez envoyé &l{{amount}}&7 tokens à &l{{player}}"
+    commandTopDescription: "Affichez le classement des joueurs ayant le plus de tokens"
+    commandTopLine: "&8#&l{{rank}} &b{{pseudo}}&3 {{amount}} &8tokens"
+    commandTopFirst: "&7Soyez le premier à apparaitre dans le classement"

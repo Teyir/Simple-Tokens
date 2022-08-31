@@ -37,3 +37,6 @@ permissions:
   simpletokens.pay:
     description: Pay tokens
     default: false
+  simpletokens.top:
+    description: Display top balance
+    default: false

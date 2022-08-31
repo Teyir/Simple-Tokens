@@ -121,5 +121,13 @@ public class DBRequest {
 
         preparedStatement.executeUpdate();
     }
+
+    public ResultSet getTopTokens() throws SQLException {
+        final PreparedStatement preparedStatement = sql.prepareStatement("SELECT uuid, tokens FROM simpletokens_data ORDER BY tokens DESC LIMIT ?");
+
+        preparedStatement.setInt(1, plugin.getConfiguration().getTopMaxDisplay());
+
+        return preparedStatement.executeQuery();
+    }
 }
 

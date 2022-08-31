@@ -22,6 +22,7 @@ messages:
     noOnlinePlayers: "&8[&c&l!&8] &cNo online players"
     onlyPlayers: "This command can executed only by players"
     insufficientBalance: "&8[&c&l!&8] &cYour balance is insufficient"
+    invalidNumber: "&8[&c&l!&8] &cPlease enter a valid number"
 
   subCommands:
     helpHeader: "&8&l&m                     &f&l{&r &bSimple-Tokens &f&l}&8&l&m                    &r\n"
@@ -48,3 +49,6 @@ messages:
     commandSetMessageMultiplesAll: "{{prefix}}&7You have set the balance for all the players to &l{{amount}}&7 tokens"
     commandPayDescription: "Send your tokens to an other player"
     commandPayMessage: "{{prefix}}&7You have send &l{{amount}}&7 tokens to &l{{player}}"
+    commandTopDescription: "Get the tokens rankig"
+    commandTopLine: "&8#&l{{rank}} &b{{pseudo}}&3 {{amount}} &8tokens"
+    commandTopFirst: "&7Be the first to be on the ranking"
