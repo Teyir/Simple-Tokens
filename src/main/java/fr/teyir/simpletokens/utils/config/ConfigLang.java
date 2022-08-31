@@ -59,7 +59,8 @@ public class ConfigLang {
         return Objects.requireNonNull(Objects.requireNonNull(conf.getConfigurationSection("messages"))
                         .getString(message))
                 .replace("&", "§")
-                .replace("{{prefix}}", plugin.getConfiguration().getPrefix());
+                .replace("{{prefix}}", plugin.getConfiguration().getPrefix())
+                .replace("{{tokenName}}", plugin.getConfiguration().getTokenName());
     }
 
     public void save() throws IOException {

@@ -9,10 +9,9 @@
 ##########################################################################################
 
 # For the minecraft color codes > https://www.spigotmc.org/attachments/example2-png.188806/
-# This config support all the placeholders from PlaceholderAPI → https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
 # You can check your file with this tool → http://www.yamllint.com
 
-# You can use the placeholder {{prefix}} anywhere you want.
+# You can use the placeholders {{prefix}} and {{tokenName}} anywhere you want.
 #
 
 messages:

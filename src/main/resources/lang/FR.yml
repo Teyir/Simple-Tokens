@@ -9,10 +9,9 @@
 ##########################################################################################
 
 # Pour la liste des couleurs Minecraft > https://www.spigotmc.org/attachments/example2-png.188806/
-# Les configuration de messages supportent tous les placeholders de PlaceholderAPI → https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
 # Vous pouvez vérifier votre configuration avec cet outil→ http://www.yamllint.com
 
-# Vous pouvez utiliser le placeholder {{prefix}} où vous souhaitez.
+# Vous pouvez utiliser les placeholders {{prefix}} et {{tokenName}} où vous souhaitez.
 #
 
 messages:
