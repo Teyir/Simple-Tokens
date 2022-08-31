@@ -31,3 +31,7 @@ permissions:
   simpletokens.give:
     description: Give tokens for a player or everyone
     default: false
+  simpletokens.set:
+    description: Set tokens for a player or everyone
+    default: false
+

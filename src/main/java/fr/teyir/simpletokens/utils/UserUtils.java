@@ -33,4 +33,14 @@ public class UserUtils {
             throw new RuntimeException(e);
         }
     }
+
+    public void setMoney(String uuid, int amount) {
+        DBRequest dbRequest = new DBRequest(plugin);
+
+        try {
+            dbRequest.setPlayerTokens(uuid, amount);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

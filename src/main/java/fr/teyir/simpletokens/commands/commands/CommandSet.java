@@ -12,31 +12,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommandTake implements ICommand {
+public class CommandSet implements ICommand {
 
-    private final SimpleTokens plugin;
+    private SimpleTokens plugin;
 
-    public CommandTake(SimpleTokens plugin) {
+    public CommandSet(SimpleTokens plugin) {
         this.plugin = plugin;
     }
+
     @Override
     public String getLabel() {
-        return "take";
+        return "set";
     }
 
     @Override
     public String getUsage() {
-        return "tokens take PLAYER AMOUNT";
+        return "tokens set PSEUDO AMOUNT";
     }
 
     @Override
     public String getPermission() {
-        return "simpletokens.take";
+        return "simpletokens.set";
     }
 
     @Override
     public String getDescription() {
-        return plugin.getLang("commands.commandTakeDescription");
+        return plugin.getLang("commands.commandSetDescription");
     }
 
     @Override
@@ -62,8 +63,8 @@ public class CommandTake implements ICommand {
             /* Query all players (*) */
             if(args[1].equalsIgnoreCase("*")){
                 try {
-                    dbRequest.removeAllPlayersTokens(amount);
-                    sender.sendMessage(plugin.getLang("commands.commandTakeMessageMultiplesAll")
+                    dbRequest.setAllPlayersTokens(amount);
+                    sender.sendMessage(plugin.getLang("commands.commandSetMessageMultiplesAll")
                             .replace("{{amount}}", args[2]));
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
@@ -79,8 +80,8 @@ public class CommandTake implements ICommand {
                 }
 
                 for(Player p : onlinePlayers) {
-                    new UserUtils(plugin).removeMoney(String.valueOf(p.getUniqueId()), amount);
-                    sender.sendMessage(plugin.getLang("commands.commandTakeMessageMultiplesOnline")
+                    new UserUtils(plugin).setMoney(String.valueOf(p.getUniqueId()), amount);
+                    sender.sendMessage(plugin.getLang("commands.commandSetMessageMultiplesOnline")
                             .replace("{{amount}}", args[2]));
                 }
 
@@ -91,9 +92,9 @@ public class CommandTake implements ICommand {
                 if(target != null) {
                     String targetUUID = String.valueOf(target.getUniqueId());
 
-                    new UserUtils(plugin).removeMoney(targetUUID, amount);
+                    new UserUtils(plugin).setMoney(targetUUID, amount);
 
-                    sender.sendMessage(plugin.getLang("commands.commandTakeMessageSingle")
+                    sender.sendMessage(plugin.getLang("commands.commandSetMessageSingle")
                             .replace("{{amount}}", args[2])
                             .replace("{{player}}", target.getDisplayName())
                     );
@@ -102,19 +103,17 @@ public class CommandTake implements ICommand {
             }
 
         }
-
     }
 
     @Override
     public List<String> tabComplete(SimpleTokens plugin, CommandSender sender, String[] args) {
-
         if (!sender.hasPermission(getPermission())) {
             return new ArrayList<>();
         }
 
         if (args.length == 1) {
             List<String> list = new ArrayList<>();
-            list.add("take");
+            list.add("set");
             return list;
         }
 

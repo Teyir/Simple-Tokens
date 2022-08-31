@@ -19,6 +19,7 @@ messages:
   errors:
     noPermission: "&8[&c&l!&8] &cYou don't have the permission to do that!"
     invalidPlayer: "&8[&c&l!&8] &cInvalid player"
+    noOnlinePlayers: "&8[&c&l!&8] &cNo online players"
 
   subCommands:
     helpHeader: "&8&l&m                     &f&l{&r &bSimple-Tokens &f&l}&8&l&m                    &r\n"
@@ -35,3 +36,11 @@ messages:
     commandTakeMessageSingle: "{{prefix}}&7You have remove &l{{amount}}&7 tokens to {{player}}"
     commandTakeMessageMultiplesOnline: "{{prefix}}&7You have remove &l{{amount}}&7 tokens to all the online players"
     commandTakeMessageMultiplesAll: "{{prefix}}&7You have remove &l{{amount}}&7 tokens to all the players"
+    commandGiveDescription: "Add tokens for one or multiples players"
+    commandGiveMessageSingle: "{{prefix}}&7You have give &l{{amount}}&7 tokens to {{player}}"
+    commandGiveMessageMultiplesOnline: "{{prefix}}&7You have give &l{{amount}}&7 tokens ato all the online players"
+    commandGiveMessageMultiplesAll: "{{prefix}}&7You have give &l{{amount}}&7 tokens to all the players"
+    commandSetDescription: "Set the token balance for one or multiples players"
+    commandSetMessageSingle: "{{prefix}}&7You have set the balance for &l{{player}}&7 to &l{{amount}}&7 tokens"
+    commandSetMessageMultiplesOnline: "{{prefix}}&7You have set the balance for the online players to &l{{amount}}&7 tokens"
+    commandSetMessageMultiplesAll: "{{prefix}}&7You have set the balance for all the players to &l{{amount}}&7 tokens"

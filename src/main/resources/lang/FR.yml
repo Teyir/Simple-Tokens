@@ -40,3 +40,7 @@ messages:
     commandGiveMessageSingle: "{{prefix}}&7Vous avez donné &l{{amount}}&7 tokens à {{player}}"
     commandGiveMessageMultiplesOnline: "{{prefix}}&7Vous avez donné &l{{amount}}&7 tokens aux joueurs en ligne"
     commandGiveMessageMultiplesAll: "{{prefix}}&7Vous avez donné &l{{amount}}&7 tokens à tous les joueurs"
+    commandSetDescription: "Définissez les tokens d'un ou plusieurs joueurs"
+    commandSetMessageSingle: "{{prefix}}&7Vous avez définis le solde &l{{player}}&7 à &l{{amount}}&7 tokens"
+    commandSetMessageMultiplesOnline: "{{prefix}}&7Vous avez définis le solde des joueurs en ligne à &l{{amount}}&7 tokens"
+    commandSetMessageMultiplesAll: "{{prefix}}&7Vous avez définis le solde de tous les joueurs à &l{{amount}}&7 tokens"
